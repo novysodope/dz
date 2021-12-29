@@ -1,0 +1,21 @@
+The vulnerability occurs in this file /utility/update.php, it only judges whether the parameters are correct, it does not verify whether it is in the login state, and it does not declare authentication permissions such as session or token.
+
+The site can be closed without authorization by accessing the url:
+http://127.0.0.1:9090/utility/update.php?step=start
+And he will start to check the database, and automatically jump an id after checking a table, here we can directly traverse the data table 1-260.
+
+From the source code of the file, we can see that we can skip any steps:
+
+
+elseif ($_GET['step'] =='sql') {
+
+Here ['step'] =='sql' where sql is the step of our program execution (url:update.php?step=sql), start is the beginning, starting from line 108, except for start, we can execute delete or Other commands:
+
+http://127.0.0.1:9090/utility/update.php?step=delete
+
+Tips:
+/utility/update.php
+
+maybe is:
+
+/data/update.php
