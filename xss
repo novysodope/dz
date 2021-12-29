@@ -1,0 +1,9 @@
+An account with the permission to publish announcements is required, such as moderators, etc.
+request:
+http://127.0.0.1:9090/forum.php?mod=modcp&action=announcement&fid=2
+
+Insert xss at the place where the link is added:
+
+'></script "/*'/*><img/src=x */; onerror=alert(1) //
+
+Click Add Announcement, and then visit the announcement to trigger the vulnerability.
